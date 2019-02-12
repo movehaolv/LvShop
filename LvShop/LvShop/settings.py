@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
     'xadmin',
+    'rest_framework',
 ]
 
 
@@ -99,6 +100,15 @@ DATABASES = {
 }
 
 
+# 发送邮件
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_HOST_USER = '839985880@qq.com'
+EMAIL_HOST_PASSWORD = 'xiybrfzrmyhpbdid'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_FROM = '839985880@qq.com'
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -137,3 +147,6 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT  = os.path.join(BASE_DIR,"media")

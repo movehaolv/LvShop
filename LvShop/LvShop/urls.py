@@ -24,6 +24,8 @@ from django.views.static import serve
 from rest_framework.documentation import include_docs_urls
 
 from goods.views import GoodsListView
+from goods.view_base import RawGoodsListView
+
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
@@ -33,4 +35,7 @@ urlpatterns = [
     url(r'^docs/',include_docs_urls(title='我的生鲜店')),
     #url(r'^api-auth/', include('rest_framework.urls'),namespace='rest_framework'),
     url(r'goods/$',GoodsListView.as_view(),name='goods-list'),
+    url(r'rawgoods/$',RawGoodsListView.as_view(),name='rawgoods-list'),
+
+
 ]

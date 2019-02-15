@@ -23,7 +23,7 @@ class GoodsListView(APIView):
     List all goods.
     """
     def get(self, request, format=None):
-        goods = Goods.objects.all()[:10]
+        goods = Goods.objects.all()[:5]
         goods_serializer = GoodsSerializer(goods, many=True)
         return Response(goods_serializer.data)
 

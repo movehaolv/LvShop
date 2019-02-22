@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^send/',Test.as_view()),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     url(r'^docs/',include_docs_urls(title='我的生鲜店')),
-    #url(r'^api-auth/', include('rest_framework.urls'),namespace='rest_framework'),
+    url(r'^api-auth/', include('rest_framework.urls',namespace='rest_framework')),   #  这个url可以在访问页面时候有login in的接口
     url(r'goods/$',GoodsListView.as_view(),name='goods-list'),
     url(r'rawgoods/$',RawGoodsListView.as_view(),name='rawgoods-list'),
 

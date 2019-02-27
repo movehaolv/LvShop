@@ -35,6 +35,27 @@ class GoodsListView(generics.ListAPIView):
     pagination_class = GoodsPagination
 
 
+from rest_framework import mixins,viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import GoodsFilter
+from rest_framework import filters
+class GoodsListViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
+    queryset = Goods.objects.all()
+    serializer_class = GoodsSerializer
+    pagination_class = GoodsPagination
+    # 配置filter
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+    # filter_fields = ('name', 'shop_price')   # 这样前段filter的时候只能完全匹配过滤，无法模糊或设定区间匹配
+    # 建立filter.py文件，对需要字段进行模糊匹配,这种过滤方式需要查看github上django-filter的操作
+    filter_class = GoodsFilter
+    # 给过滤器添加搜索框进行模糊搜索
+    search_fields = ('name', 'goods_brief', 'goods_desc')
+    # 给字段进行排序
+    ordering_fields = ('sold_num', 'add_time')
+
+
+
+
 
 
 # class GoodsListView(APIView):

@@ -16,7 +16,22 @@ from rest_framework import serializers
 
 
 from goods.models import Goods,GoodsCategory
+
+class CategorySerializer3(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsCategory
+        fields = "__all__"
+
+class CategorySerializer2(serializers.ModelSerializer):
+    sub_cat = CategorySerializer3(many=True)   # 在前端的2及类目包含3级类目
+    class Meta:
+        model = GoodsCategory
+        fields = "__all__"
+
 class CategorySerializer(serializers.ModelSerializer):
+    # 因为商品类别中有三级，GoodsCategory类以自身作为外键，一级是二级的外键，二级是三级的外键
+    # 可以用如下方式在前段显示外键
+    sub_cat = CategorySerializer2(many=True)   # 注：sub_cat与model中GoodsCategory中的related_name一样
     class Meta:
         model = GoodsCategory
         fields = "__all__"

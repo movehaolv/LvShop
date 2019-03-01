@@ -13,10 +13,10 @@ class Test(View):
 
 
 
-from .serializers import GoodsSerializer
+from .serializers import GoodsSerializer,CategorySerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Goods
+from .models import Goods,GoodsCategory
 from rest_framework import status
 
 from rest_framework.pagination import PageNumberPagination
@@ -54,6 +54,14 @@ class GoodsListViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
     ordering_fields = ('sold_num', 'add_time')
 
 
+class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    """
+    RetrieveModelMixin 参数可以使得前端输入http://127.0.0.1:8000/categorys/1/而显示id为1的商品，相当于restful接口的GET操作 GET /zoos/ID：获取某个指定动物园的信息
+    list:
+        商品分类列表
+    """
+    queryset = GoodsCategory.objects.all()
+    serializer_class = CategorySerializer
 
 
 

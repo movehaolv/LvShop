@@ -27,7 +27,6 @@ class CategorySerializer2(serializers.ModelSerializer):
     class Meta:
         model = GoodsCategory
         fields = "__all__"
-
 class CategorySerializer(serializers.ModelSerializer):
     # 因为商品类别中有三级，GoodsCategory类以自身作为外键，一级是二级的外键，二级是三级的外键
     # 可以用如下方式在前段显示外键
